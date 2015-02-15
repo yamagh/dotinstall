@@ -1,0 +1,24 @@
+<h1><%= @project.title %></h1>
+
+<ul>
+  <% @project.tasks.each do |task| %>
+    <li>
+    <%= link_to image_tag('trash.png', size:'12x12'), project_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= check_box_tag task, :done %>
+    <%= task.title %>
+    </li>
+  <% end %>
+  <%= form_for [@project, @project.tasks.build] do |f| %>
+    <li>
+      <%= f.text_field :title %>
+      <%= f.submit %>
+    </li>
+  <% end %>
+</ul>
+
+<p>
+<%= link_to '[Edit Project]', edit_project_path(@project) %>
+</p>
+<p>
+<%= link_to '[Delete Project]', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

@@ -1,0 +1,16 @@
+<h1><%= @project.title %></h1>
+
+<ul>
+  <% @project.tasks.each do |t| %>
+    <li>
+      <%= t.check_box :done %>
+      <%= t.title %>
+    </li>
+  <% end %>
+  <%= form_for [@project, @project.tasks.build] do |f| %>
+    <li>
+      <%= f.text_field :title %>
+      <%= f.submit %>
+    </li>
+  <% end %>
+</ul>
